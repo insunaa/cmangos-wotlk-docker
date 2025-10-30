@@ -36,3 +36,4 @@ services:
       - "/mangos/bin/mangosd"
     command:
       - "-c/mangos/etc/mangosd.conf"
+    stop_grace_period: 60s
