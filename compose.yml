@@ -1,0 +1,38 @@
+services:
+  realmd:
+    image: cmangos-wotlk:latest
+    build:
+      context: "."
+      tags: 
+        - "cmangos-wotlk:latest"
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 3724:3724
+    volumes:
+      - ./etc:/mangos/etc
+      - ./databases:/databases
+      - /etc/localtime:/etc/localtime:ro
+    entrypoint:
+      - "/mangos/bin/realmd"
+    command:
+      - "-c/mangos/etc/realmd.conf"
+  mangosd:
+    image: cmangos-wotlk:latest
+    build:
+      context: "."
+      tags:
+        - "cmangos-wotlk:latest"
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 8085:8085
+    volumes:
+      - ./etc:/mangos/etc
+      - ./databases:/databases
+      - ./data:/data
+      - /etc/localtime:/etc/localtime:ro
+    entrypoint:
+      - "/mangos/bin/mangosd"
+    command:
+      - "-c/mangos/etc/mangosd.conf"
