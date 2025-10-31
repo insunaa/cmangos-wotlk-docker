@@ -1,3 +1,24 @@
 #!/bin/bash
+checkpodman(){
+    echo $(command -v podman)
+}
+checkdocker(){
+    echo $(command -v docker)
+}
 
-podman build --build-arg AHBOT=1 --build-arg PLAYERBOTS=1 -t mangos-wotlk:latest .
+ORCH=podman
+
+if [ ! -z "${CONTAINER_ORCHESTRATOR}" ]; then
+    ORCH="${CONTAINER_ORCHESTRATOR}"
+else
+    if [ ! $(checkpodman) ]; then
+        if [ ! $(checkdocker) ]; then
+            echo "No Container-Orchestrator found."
+            exit 1
+        else
+            ORCH=docker
+        fi
+    fi
+fi
+
+$ORCH build --build-arg AHBOT=1 --build-arg PLAYERBOTS=1 -t mangos-wotlk:latest .
