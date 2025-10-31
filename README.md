@@ -24,6 +24,8 @@ To create a user run `./enter_console.sh` to connect to the `mangosd` process. L
 To update the core simply run `./build_default.sh` or `./build_bots.sh` again.
 To update the database simply run `./update_dbs.sh` again
 
+After updating the core, the composition needs to be fully torn down with `podman-compose down` or `docker compose down` and not simply stopped for it to load the newly built core image.
+
 ## Experimental
 If an update of the realmd and/or characters database is required there is an ***EXPERIMENTAL*** feature that allows backing up these databases and restoring them.
 
