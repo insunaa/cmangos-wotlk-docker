@@ -3,7 +3,8 @@
 This repository assumes that you are using rootless [Podman](https://github.com/containers/podman)
 
 ## If you insist on using docker instead of podman
-In that case you can run `alias podman='docker'` before doing any of the steps mentioned here
+By default `podman` is used. If `podman` is not present on your system, `docker` will be used.
+If you want to override which container orchestrator to use set the environment variable `CONTAINER_ORCHESTRATOR` to `podman` or `docker` or any other that is command-compatible.
 
 ### Getting started
 
