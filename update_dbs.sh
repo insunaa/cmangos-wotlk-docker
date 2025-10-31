@@ -22,3 +22,7 @@ rm dbs.zip
 if [ -f custom.sql ]; then
     sqlite3 databases/wotlkmangos.sqlite < custom.sql
 fi
+
+if [ -f realm.sql ]; then
+    sqlite3 databases/wotlkrealmd.sqlite < realm.sql
+fi
