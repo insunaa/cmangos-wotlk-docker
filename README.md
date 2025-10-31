@@ -5,6 +5,8 @@ This repository assumes that you are using rootless [Podman](https://github.com/
 ## If you insist on using docker instead of podman
 In that case you can run `alias podman='docker'` before doing any of the steps mentioned here
 
+### Getting started
+
 To get started first run `./build_default.sh` if you don't want to play with Playerbots or `./build_bots.sh` if you want to play with bots.
 This will build the server components and extractors. It also allows you to update the CMaNGOS core to the latest version.
 
