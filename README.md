@@ -15,6 +15,8 @@ Next run `./update_dbs.sh` to download and install the SQLite Databases
 
 Finally run `./extract.sh /path/to/your/World of Warcraft` to extract the data required to run the server.
 
+***Duplicate all config files in the `etc` directory and remove the `.dist` file extension on the duplicated files. Do not delete or edit the original `.dist` files unless you want git to complain***
+
 Once all of this has finished you can start the server with `podman-compose up -d` and check the status with `podman-compose logs`
 
 To create a user run `./enter_console.sh` to connect to the `mangosd` process. Log in with `ADMINISTRATOR` as user and `ADMINISTRATOR` as password.

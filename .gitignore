@@ -3,3 +3,4 @@ databases
 .git
 realmd_backup.sql
 characters_backup.sql
+etc/*.conf
