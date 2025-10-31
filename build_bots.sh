@@ -21,4 +21,4 @@ else
     fi
 fi
 
-$ORCH build --build-arg AHBOT=1 --build-arg PLAYERBOTS=1 -t mangos-wotlk:latest .
+$ORCH build --build-arg AHBOT=1 --build-arg PLAYERBOTS=1 -t cmangos-wotlk:latest .
