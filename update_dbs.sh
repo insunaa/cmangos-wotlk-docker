@@ -18,3 +18,7 @@ else
 fi
 
 rm dbs.zip
+
+if [ -f custom.sql ]; then
+    sqlite3 databases/wotlkmangos.sqlite < custom.sql
+fi
