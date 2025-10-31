@@ -1,5 +1,11 @@
 #!/bin/bash
 
+read -p "Are you sure? This will delete your current database if you do not have the most recent version backed up. [y/N] " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 1
+fi
+
 if [ ! -f realmd_backup.sql ] || [ ! -s realmd_backup.sql ]; then
     "No Realmd Backup detected. Aborting"
     exit 1
