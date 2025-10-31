@@ -36,6 +36,11 @@ if [ "$1" = "/" ] || [ "$1" = "" ]; then
     exit 1
 fi
 
+if [[ ! -d "$1/Data" ]] && [[ ! -d "$1/data" ]]; then
+    echo 'Target must be the `World of Warcraft` directory.'
+    exit 1
+fi
+
 if [ ! -d data ]; then
     mkdir data
 fi
