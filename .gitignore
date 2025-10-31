@@ -4,3 +4,4 @@ databases
 realmd_backup.sql
 characters_backup.sql
 etc/*.conf
+compose.override.yml
