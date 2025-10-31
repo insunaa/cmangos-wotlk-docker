@@ -13,6 +13,9 @@ fi
 
 if [ ! -f databases/wotlkmangos.sqlite ]; then
     unzip dbs.zip -d databases
+    if [ -f databases/wotlkrealmd.sqlite ]; then
+        sqlite3 databases/wotlkrealmd.sqlite "UPDATE account SET locked=1 WHERE id<5;" ".exit"
+    fi
 else
     unzip -o dbs.zip wotlkmangos.sqlite -d databases
 fi
