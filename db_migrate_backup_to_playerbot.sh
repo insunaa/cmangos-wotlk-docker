@@ -24,7 +24,7 @@ if [ ! -f characters_backup.sql ] || [ ! -s characters_backup.sql ]; then
 fi
 
 echo "Deleting the characters Database"
-for t in $(sqlite3 -batch databases/wotlkcharacters.sqlite ".mode list" "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';"); do
+for t in $(sqlite3 -batch databases/wotlkcharacters.sqlite ".mode list" "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'ai_playerbot_%';"); do
   sqlite3 -batch databases/wotlkcharacters.sqlite "DELETE FROM \"$t\";"
 done
 echo "Restoring the characters Database"
