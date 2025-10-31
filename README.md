@@ -21,6 +21,8 @@ Once all of this has finished you can start the server with `podman-compose up -
 
 To create a user run `./enter_console.sh` to connect to the `mangosd` process. Log in with `ADMINISTRATOR` as user and `ADMINISTRATOR` as password.
 
+### Updating
+
 To update the core simply run `./build_default.sh` or `./build_bots.sh` again.
 To update the database simply run `./update_dbs.sh` again
 
