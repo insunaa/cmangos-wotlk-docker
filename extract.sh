@@ -19,4 +19,4 @@ if [ ! -d data ]; then
     mkdir data
 fi
 
-podman run --rm -w '/mangos/bin/tools/' -v '$1:/client' -v './data:/output' cmangos-wotlk:latest /bin/bash "/mangos/bin/tools/ExtractResources.sh" "a" "/client" "/output"
+podman run --rm -w '/mangos/bin/tools/' -v "$1:/client" -v './data:/output' cmangos-wotlk:latest /bin/bash "/mangos/bin/tools/ExtractResources.sh" "a" "/client" "/output"
