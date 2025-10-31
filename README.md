@@ -32,3 +32,6 @@ If they are not empty in the next step *rename* your `databases` directory to `d
 make the `realmd` and `characters` dbs unusable. So be *absolutely sure* that you have renamed the folder with the original databases to avoid data loss.
 
 Carelessness in this process can and will delete all of your account data in these containers.
+
+There are also the `handsfree_setup.sh` and the `handsfree_update.sh` scripts, which *should* do the full setup without user intervention and do a full update with only a minor intervention.
+Especially the hands free update is dangerous, so only do it if you're sure.
