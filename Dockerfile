@@ -31,5 +31,8 @@ RUN \
     cd mangos-wotlk/build && \
     ninja install && \
     cd ../.. && \
-    rm -rf mangos-wotlk
+    rm -rf mangos-wotlk && \
+#    apt-mark manual libboost-thread1.83.0 libboost-program-options1.83.0 libboost-filesystem1.83.0 bzip2 && \
+#    apt purge -y build-essential g++ gcc automake libtool cmake git ninja-build && \
+    apt clean -y
 WORKDIR /mangos/bin
