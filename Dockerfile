@@ -1,4 +1,4 @@
-FROM debian:trixie
+FROM debian:trixie as build
 
 ARG PLAYERBOTS=0
 ARG AHBOT=0
@@ -6,15 +6,12 @@ ARG AHBOT=0
 RUN \
     mkdir /mangos && \
     apt update && \
-    apt upgrade && \
     apt install -y \
-    netcat-traditional \
     git \
     build-essential \
     g++ \
     gcc \
     automake \
-    sqlite3 \
     libsqlite3-dev \
     libtool \
     libssl-dev \
@@ -29,10 +26,14 @@ RUN \
     mkdir -p mangos-wotlk/build && \
     cmake -Bmangos-wotlk/build -Smangos-wotlk -DPCH=1 -DDEBUG=0 -DUSE_ANTICHEAT=0 -DSQLITE=1 -DBUILD_EXTRACTORS=1 -DBUILD_AHBOT=$AHBOT -DBUILD_PLAYERBOTS=$PLAYERBOTS -DCMAKE_INSTALL_PREFIX=/mangos -DCMAKE_BUILD_TYPE=Release -GNinja -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_CXX_STANDARD=20 && \
     cd mangos-wotlk/build && \
-    ninja install && \
-    cd ../.. && \
-    rm -rf mangos-wotlk && \
-#    apt-mark manual libboost-thread1.83.0 libboost-program-options1.83.0 libboost-filesystem1.83.0 bzip2 && \
-#    apt purge -y build-essential g++ gcc automake libtool cmake git ninja-build && \
-    apt clean -y
+    ninja install
+
+FROM debian:trixie-slim
+COPY --from=build /mangos /mangos
+
+RUN apt update && \
+    apt upgrade && \
+    apt install -y netcat-traditional && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /mangos/bin
