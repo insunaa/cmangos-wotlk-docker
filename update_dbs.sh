@@ -1,5 +1,4 @@
 #!/bin/bash
-
 wget --quiet -O dbs.zip https://github.com/cmangos/wotlk-db/releases/download/latest/wotlk-sqlite-db.zip
 
 if [ ! -f dbs.zip ]; then

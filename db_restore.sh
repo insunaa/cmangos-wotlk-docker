@@ -1,5 +1,4 @@
 #!/bin/bash
-
 read -p "Are you sure? This will delete your current database if you do not have the most recent version backed up. [y/N] " -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then

@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ ! -z $INSIDE_CONTAINER ]; then
+    echo 'Setup cannot be done from inside the container. Please build it regularly.'
+    exit 1
+fi
+
 if [ "$#" -lt 1 ]; then
     echo 'Usage: ./handsfree_setup.sh /path/to/your/wow/client'
     exit 1
