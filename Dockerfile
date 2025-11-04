@@ -1,5 +1,4 @@
 FROM debian:trixie as build
-
 RUN \
     mkdir /mangos && \
     apt update && \
@@ -23,7 +22,6 @@ FROM build as build2
 ARG INVALIDATE_CACHE
 ARG PLAYERBOTS=0
 ARG AHBOT=0
-
 LABEL deleteme=true
 RUN git clone --single-branch --branch=master --depth=1 --recursive https://github.com/cmangos/mangos-wotlk.git && \
     mkdir -p mangos-wotlk/build && \
@@ -35,7 +33,6 @@ FROM debian:trixie-slim
 LABEL deleteme=false
 ENV INSIDE_CONTAINER=true
 COPY --from=build2 /mangos /mangos
-
 RUN apt update && \
     apt upgrade && \
     apt install -y \
