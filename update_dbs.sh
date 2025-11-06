@@ -1,5 +1,5 @@
 #!/bin/bash
-source .env
+source preamble.sh
 wget --quiet -O dbs.zip https://github.com/cmangos/$CMANGOS_EXPANSION-db/releases/download/latest/$CMANGOS_EXPANSION-sqlite-db.zip
 
 if [ ! -f dbs.zip ]; then

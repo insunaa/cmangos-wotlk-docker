@@ -6,6 +6,16 @@ checkdocker(){
     echo $(command -v docker)
 }
 
+if [ ! -f .env ]; then
+    if [ ! -f .env.dist ]; then
+        echo "No .env or .env.dist file found. Please ensure you run this script from the correct directory!"
+        exit 1
+    else
+        cp .env.dist .env
+    fi
+fi
+source .env
+
 ORCH=podman
 
 if [ ! -z "${CONTAINER_ORCHESTRATOR}" ]; then

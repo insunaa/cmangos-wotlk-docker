@@ -1,6 +1,5 @@
 #!/bin/bash
 source preamble.sh
-source .env
 
 if [ "$#" -lt 1 ]; then
     echo 'Usage: ./extract.sh /path/to/your/wow/client'

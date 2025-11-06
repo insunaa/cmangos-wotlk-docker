@@ -1,6 +1,5 @@
 #!/bin/bash
 source preamble.sh
-source .env
 
 if [ ! -z $INSIDE_CONTAINER ]; then
     echo "Already inside container"
