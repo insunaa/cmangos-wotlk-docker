@@ -14,6 +14,7 @@ if [ ! -f .env ]; then
         cp .env.dist .env
     fi
 fi
+git restore .env.dist
 source .env
 
 ORCH=podman
