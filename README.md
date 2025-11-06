@@ -1,4 +1,4 @@
-# Dockerized CMaNGOS WotLK
+# Dockerized CMaNGOS
 
 This repository assumes that you are using rootless [Podman](https://github.com/containers/podman)
 
@@ -8,14 +8,16 @@ If you want to override which container orchestrator to use set the environment 
 
 ### Getting started
 
-To get started first run `./build_default.sh` if you don't want to play with Playerbots or `./build_bots.sh` if you want to play with bots.
+- The very first thing to do is to rename or copy the `.env.dist` file to `.env` and edit it to choose the CMaNGOS expansion you wish this server to be for.
+
+Next you should run `./build_default.sh` if you don't want to play with Playerbots or `./build_bots.sh` if you want to play with bots.
 This will build the server components and extractors. It also allows you to update the CMaNGOS core to the latest version.
 
 Next run `./update_dbs.sh` to download and install the SQLite Databases
 
 Finally run `./extract.sh /path/to/your/World of Warcraft` to extract the data required to run the server.
 
-***Duplicate all config files in the `etc` directory and remove the `.dist` file extension on the duplicated files. Do not delete or edit the original `.dist` files unless you want git to complain***
+To make changes to the configuration use the `.env` file.
 
 Once all of this has finished you can start the server with `podman-compose up -d` and check the status with `podman-compose logs`
 

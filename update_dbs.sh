@@ -1,5 +1,6 @@
 #!/bin/bash
-wget --quiet -O dbs.zip https://github.com/cmangos/wotlk-db/releases/download/latest/wotlk-sqlite-db.zip
+source .env
+wget --quiet -O dbs.zip https://github.com/cmangos/$CMANGOS_EXPANSION-db/releases/download/latest/$CMANGOS_EXPANSION-sqlite-db.zip
 
 if [ ! -f dbs.zip ]; then
     echo "Failed to download Databases"
@@ -10,21 +11,27 @@ if [ ! -d databases ]; then
     mkdir databases
 fi
 
-if [ ! -f databases/wotlkmangos.sqlite ]; then
+if [ ! -f databases/mangos.sqlite ]; then
     unzip dbs.zip -d databases
-    if [ -f databases/wotlkrealmd.sqlite ]; then
-        sqlite3 -batch databases/wotlkrealmd.sqlite "UPDATE account SET locked=1 WHERE id<5;" ".exit"
+    mv -f databases/"$CMANGOS_EXPANSION"mangos.sqlite databases/mangos.sqlite
+    mv -f databases/"$CMANGOS_EXPANSION"realmd.sqlite databases/realmd.sqlite
+    mv -f databases/"$CMANGOS_EXPANSION"characters.sqlite databases/characters.sqlite
+    mv -f databases/"$CMANGOS_EXPANSION"logs.sqlite databases/logs.sqlite
+
+    if [ -f databases/realmd.sqlite ]; then
+        sqlite3 -batch databases/realmd.sqlite "UPDATE account SET locked=1 WHERE id<5;" ".exit"
     fi
 else
-    unzip -o dbs.zip wotlkmangos.sqlite -d databases
+    unzip -o dbs.zip "$CMANGOS_EXPANSION"mangos.sqlite -d databases
+    mv -f databases/"$CMANGOS_EXPANSION"mangos.sqlite databases/mangos.sqlite
 fi
 
 rm dbs.zip
 
 if [ -f custom.sql ]; then
-    sqlite3 -batch databases/wotlkmangos.sqlite < custom.sql
+    sqlite3 -batch databases/mangos.sqlite < custom.sql
 fi
 
 if [ -f realm.sql ]; then
-    sqlite3 -batch databases/wotlkrealmd.sqlite < realm.sql
+    sqlite3 -batch databases/realmd.sqlite < realm.sql
 fi

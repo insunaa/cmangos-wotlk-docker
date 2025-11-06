@@ -1,39 +1,39 @@
 services:
   realmd:
-    image: cmangos-wotlk:latest
+    image: cmangos-${CMANGOS_EXPANSION}:latest
     build:
       context: "."
-      tags: 
-        - "cmangos-wotlk:latest"
+      tags:
+        - "cmangos-${CMANGOS_EXPANSION}:latest"
       dockerfile: Dockerfile
     env_file: .env
     ports:
       - 3724:3724
     volumes:
-      - ./etc:/mangos/etc
+      #      - ./etc:/mangos/etc
       - ./databases:/databases
       - /etc/localtime:/etc/localtime:ro
     entrypoint:
       - "/mangos/bin/realmd"
-    command:
-      - "-c/mangos/etc/realmd.conf"
+  #    command:
+  #      - "-c/mangos/etc/realmd.conf"
   mangosd:
-    image: cmangos-wotlk:latest
+    image: cmangos-${CMANGOS_EXPANSION}:latest
     build:
       context: "."
       tags:
-        - "cmangos-wotlk:latest"
+        - "cmangos-${CMANGOS_EXPANSION}:latest"
       dockerfile: Dockerfile
     env_file: .env
     ports:
       - 8085:8085
     volumes:
-      - ./etc:/mangos/etc
+      #      - ./etc:/mangos/etc
       - ./databases:/databases
       - ./data:/data
       - /etc/localtime:/etc/localtime:ro
     entrypoint:
       - "/mangos/bin/mangosd"
-    command:
-      - "-c/mangos/etc/mangosd.conf"
+    #    command:
+    #      - "-c/mangos/etc/mangosd.conf"
     stop_grace_period: 60s

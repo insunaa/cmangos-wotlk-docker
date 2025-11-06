@@ -1,5 +1,6 @@
 #!/bin/bash
 source preamble.sh
+source .env
 
 if [ "$#" -lt 1 ]; then
     echo 'Usage: ./extract.sh /path/to/your/wow/client'
@@ -25,4 +26,4 @@ if [ ! -d data ]; then
     mkdir data
 fi
 
-$ORCH run --rm -w '/mangos/bin/tools/' -v "$1:/client" -v './data:/output' cmangos-wotlk:latest /bin/bash "/mangos/bin/tools/ExtractResources.sh" "a" "/client" "/output"
+$ORCH run --rm -w '/mangos/bin/tools/' -v "$1:/client" -v './data:/output' cmangos-$CMANGOS_EXPANSION:latest /bin/bash "/mangos/bin/tools/ExtractResources.sh" "a" "/client" "/output"

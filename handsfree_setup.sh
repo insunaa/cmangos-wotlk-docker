@@ -28,11 +28,11 @@ if [ ! -d data ]; then
     mkdir data
 fi
 
-cp etc/aiplayerbot.conf.dist etc/aiplayerbot.conf
-cp etc/anticheat.conf.dist etc/anticheat.conf
-cp etc/mangosd.conf.dist etc/mangosd.conf
-cp etc/realmd.conf.dist etc/realmd.conf
-cp etc/ahbot.conf.dist etc/ahbot.conf
+if [ ! -f .env ]; then
+    echo "Please modify the '.env' file to select the desired expansion!"
+    cp .env.dist .env
+    exit 1
+fi
 
 bash build_bots.sh
 bash update_dbs.sh
