@@ -20,13 +20,13 @@ RUN \
 
 FROM build as build2
 ARG INVALIDATE_CACHE
-ARG PLAYERBOTS=0
-ARG AHBOT=0
+ARG PLAYERBOTS=1
+ARG AHBOT=1
 ARG CMANGOS_EXPANSION="wotlk"
 LABEL deleteme=true
 RUN git clone --single-branch --branch=master --depth=1 --recursive https://github.com/cmangos/mangos-${CMANGOS_EXPANSION}.git && \
     mkdir -p mangos-${CMANGOS_EXPANSION}/build && \
-    cmake -Bmangos-${CMANGOS_EXPANSION}/build -Smangos-${CMANGOS_EXPANSION} -DPCH=1 -DDEBUG=0 -DUSE_ANTICHEAT=0 -DSQLITE=1 -DBUILD_EXTRACTORS=1 -DBUILD_AHBOT=$AHBOT -DBUILD_PLAYERBOTS=$PLAYERBOTS -DCMAKE_INSTALL_PREFIX=/mangos -DCMAKE_BUILD_TYPE=Release -GNinja -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_CXX_STANDARD=20 && \
+    cmake -Bmangos-${CMANGOS_EXPANSION}/build -Smangos-${CMANGOS_EXPANSION} -DPCH=1 -DDEBUG=0 -DUSE_ANTICHEAT=0 -DSQLITE=1 -DBUILD_EXTRACTORS=1 -DBUILD_AHBOT=${AHBOT} -DBUILD_PLAYERBOTS=${PLAYERBOTS} -DCMAKE_INSTALL_PREFIX=/mangos -DCMAKE_BUILD_TYPE=Release -GNinja -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_CXX_STANDARD=20 && \
     cd mangos-${CMANGOS_EXPANSION}/build && \
     ninja install && \
     mv -f /mangos/etc/mangosd.conf.dist /mangos/etc/mangosd.conf && \
