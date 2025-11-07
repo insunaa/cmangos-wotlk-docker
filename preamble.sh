@@ -36,4 +36,6 @@ COMPOSE_COMMAND="podman-compose"
 
 if [ "$ORCH" = "docker" ]; then
     COMPOSE_COMMAND="docker compose"
+elif [ ! -z "${CONTAINER_ORCHESTRATOR}" ]; then
+    COMPOSE_COMMAND="$CONTAINER_ORCHESTRATOR-compose"
 fi
