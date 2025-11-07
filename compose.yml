@@ -10,13 +10,10 @@ services:
     ports:
       - 3724:3724
     volumes:
-      #      - ./etc:/mangos/etc
       - ./databases:/databases
       - /etc/localtime:/etc/localtime:ro
     entrypoint:
       - "/mangos/bin/realmd"
-  #    command:
-  #      - "-c/mangos/etc/realmd.conf"
   mangosd:
     image: cmangos-${CMANGOS_EXPANSION}:latest
     build:
@@ -28,12 +25,9 @@ services:
     ports:
       - 8085:8085
     volumes:
-      #      - ./etc:/mangos/etc
       - ./databases:/databases
       - ./data:/data
       - /etc/localtime:/etc/localtime:ro
     entrypoint:
       - "/mangos/bin/mangosd"
-    #    command:
-    #      - "-c/mangos/etc/mangosd.conf"
     stop_grace_period: 60s
