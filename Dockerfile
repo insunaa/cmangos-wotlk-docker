@@ -1,4 +1,5 @@
 FROM debian:trixie as build
+LABEL deleteme=false
 RUN \
     mkdir /mangos && \
     apt update && \
