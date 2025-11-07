@@ -31,3 +31,9 @@ else
         fi
     fi
 fi
+
+COMPOSE_COMMAND="podman-compose"
+
+if [ "$ORCH" = "docker" ]; then
+    COMPOSE_COMMAND="docker compose"
+fi

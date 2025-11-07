@@ -6,4 +6,4 @@ if [ ! -z $INSIDE_CONTAINER ]; then
     exit 1
 fi
 
-$ORCH run --rm -it -w '/repo' -v ".:/repo" cmangos-$CMANGOS_EXPANSION:latest /bin/bash
+$COMPOSE_COMMAND run --rm -w '/repo' -v ".:/repo" --entrypoint "/bin/bash" mangosd
