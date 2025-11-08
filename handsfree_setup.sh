@@ -34,7 +34,7 @@ if [ ! -f .env ]; then
     exit 1
 fi
 
-bash build_bots.sh
+bash build_image.sh
 bash update_dbs.sh
 bash extract.sh $1
 

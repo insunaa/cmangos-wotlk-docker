@@ -2,7 +2,7 @@
 if [ -z $INSIDE_CONTAINER ]; then
     echo 'Updating the core.'
     sleep 3s
-    bash build_bots.sh
+    bash build_image.sh
 fi
 
 read -p "Also update the Databases? [y/N] " -n 1 -r

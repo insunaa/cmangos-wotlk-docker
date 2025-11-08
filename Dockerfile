@@ -20,7 +20,6 @@ RUN \
     ninja-build
 
 FROM build as build2
-ARG INVALIDATE_CACHE
 ARG PLAYERBOTS=1
 ARG AHBOT=1
 ARG CMANGOS_EXPANSION="wotlk"

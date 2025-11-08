@@ -25,4 +25,4 @@ if [ ! -d data ]; then
     mkdir data
 fi
 
-$ORCH run --rm -w '/mangos/bin/tools/' -v "$1:/client" -v './data:/output' cmangos-$CMANGOS_EXPANSION:latest /bin/bash "/mangos/bin/tools/ExtractResources.sh" "a" "/client" "/output"
+$COMPOSE_COMMAND run --rm -w '/mangos/bin/tools/' -v "$1:/client" -v './data:/output' --entrypoint "/bin/bash" mangosd "-c" "/mangos/bin/tools/ExtractResources.sh a /client /output"
