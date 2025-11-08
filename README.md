@@ -22,6 +22,9 @@ To make changes to the configuration use the `.env` file.
 Once all of this has finished you can start the server with `podman-compose up -d` and check the status with `podman-compose logs`
 
 To create a user run `./enter_console.sh` to connect to the `mangosd` process. Log in with `ADMINISTRATOR` as user and `ADMINISTRATOR` as password.
+The command to run is: `account create username password 3` replace `username` with your username and `password` with your password.
+The `3` means that the account is enabled for the WotLK expansion and so does include classic and tbc.
+To make your account into a GM account, use `account set gmlevel 3 username`.
 
 ### Updating
 
@@ -29,6 +32,16 @@ To update the core simply run `./build_default.sh` or `./build_bots.sh` again.
 To update the database simply run `./update_dbs.sh` again
 
 After updating the core, the composition needs to be fully torn down with `podman-compose down` or `docker compose down` and not simply stopped for it to load the newly built core image.
+
+### Special files
+
+To override settings from the `compose.yml` you can create a `compose.override.yml` and use it to add or override values from the `compose.yml`.
+Check the documentation of `docker` or `podman` for more information.
+
+To change the configurations of your server, modify the `.env` (not the `.env.dist`) file. Check the top of [the reference CMaNGOS config file](https://raw.githubusercontent.com/cmangos/mangos-wotlk/refs/heads/master/src/mangosd/mangosd.conf.dist.in) for more information.
+
+To change the name of your server or the IP of your server, copy the `realm.sql.dist` file to `realm.sql` and edit it to fit your needs.
+It is automatically applied when you run `update_dbs.sh`.
 
 ## Experimental
 If an update of the realmd and/or characters database is required there is an ***EXPERIMENTAL*** feature that allows backing up these databases and restoring them.
