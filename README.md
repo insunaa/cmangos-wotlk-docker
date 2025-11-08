@@ -21,8 +21,14 @@ To make changes to the configuration use the `.env` file.
 Once all of this has finished you can start the server with `podman-compose up -d` and check the status with `podman-compose logs`
 
 To create a user run `./enter_console.sh` to connect to the `mangosd` process. Log in with `ADMINISTRATOR` as user and `ADMINISTRATOR` as password.
+
+> [!NOTE]
+> There are 4 default users in the Database: `ADMINISTRATOR`, `GAMEMASTER`, `MODERATOR` and `PLAYER`, each of which have their account name as their password.
+> All 4 of these accounts are disabled for logging in from the client, but can be used to log in with the `./enter_console.sh` command.
+
 The command to run is: `account create username password 3` replace `username` with your username and `password` with your password.
 The `3` means that the account is enabled for the WotLK expansion and so does include classic and tbc.
+
 To make your account into a GM account, use `account set gmlevel 3 username`.
 
 ### Updating
